@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <template id="stock_product_qr_label_document">
+        <t t-call="stock_product_qr_label.external_layout_quant_product_label">
+            <div
+      class="page"
+      style="page-break-after: always; width: 100%; min-height: 40mm; margin: 0; padding: 0; display: flex; align-items: center; justify-content: center;"
+      >
+                <div
+          style="font-family: Helvetica, Arial, sans-serif; width: 80mm; height: 40mm; padding: 0.3mm; margin: 0; box-sizing: border-box; overflow: hidden;"
+        >
+                <div style="text-align: center; font-size: 13px; font-weight: 700; line-height: 1.1; margin-bottom: 0.6mm;">
+                    St. BERNADET - PAROKI PINANG
+                </div>
+                <div style="border-top: 1px solid #000; margin-bottom: 0.8mm;" />
+
+                <div style="display: table; width: 100%; table-layout: fixed; height: 35mm;">
+                    <div style="display: table-cell; width: 22mm; vertical-align: middle;">
+                        <div
+              style="width: 22mm; height: 22mm; border: 1px solid #000;"
+              aria-label="Empty logo area"
+            />
+                    </div>
+                    <div style="display: table-cell; width: 30mm; vertical-align: middle; padding-left: 0.8mm; padding-right: 0.8mm;">
+                        <div style="font-size: 10px; font-weight: 700; line-height: 1.2; word-wrap: break-word; overflow-wrap: break-word;">
+                            <span t-esc="doc.product_id.default_code or ''" />
+                        </div>
+                        <div style="font-size: 9.5px; line-height: 1.2; margin-top: 0.8mm; word-wrap: break-word; overflow-wrap: break-word; max-height: 15mm; overflow: hidden;">
+                            <span t-esc="doc.product_id.name_for_labels or doc.product_id.name or ''" />
+                        </div>
+                    </div>
+                    <div style="display: table-cell; width: 28mm; vertical-align: middle; text-align: right;">
+                        <img
+                            t-att-src="'/report/barcode/?barcode_type=%s&amp;value=%s&amp;width=%s&amp;height=%s'%('QR', (doc.qr_code or '').replace(chr(38), '%26').replace('#', '%23'), 112, 112)"
+              style="width: 28mm; height: 28mm;"
+            />
+                    </div>
+                </div>
+                </div>
+            </div>
+        </t>
+    </template>
+
+    <template id="report_stock_product_qr_label">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <t
+          t-call="stock_product_qr_label.stock_product_qr_label_document"
+          t-lang="doc.company_id.partner_id.lang"
+        />
+            </t>
+        </t>
+    </template>
+
+    <record id="action_stock_product_qr_label_report" model="ir.actions.report">
+        <field name="name">Product QR Label</field>
+        <field name="model">stock.quant</field>
+        <field name="report_type">qweb-pdf</field>
+        <field
+      name="report_name"
+    >stock_product_qr_label.report_stock_product_qr_label</field>
+        <field
+      name="report_file"
+    >stock_product_qr_label.report_stock_product_qr_label</field>
+        <field
+      name="print_report_name"
+    >('QR Label For Product - %s' % (object.product_id.name))</field>
+        <field name="binding_model_id" ref="stock.model_stock_quant" />
+        <field name="binding_type">report</field>
+        <field
+      name="paperformat_id"
+      ref="stock_product_qr_label.paperformat_product_qr_label"
+    />
+    </record>
+</odoo>

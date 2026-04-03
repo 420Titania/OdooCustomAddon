@@ -1,0 +1,23 @@
+<odoo>
+    <template id="product_report_template">
+        <t t-call="web.external_layout">
+            <t t-foreach="docs" t-as="product">
+                <div class="page">
+                    <h2>Product Information</h2>
+                    <table class="table table-sm">
+                        <tr><td width="30%"><strong>Name</strong></td><td width="70%"><span t-field="product.name"/></td></tr>
+                        <tr><td><strong>Internal Reference</strong></td><td><span t-field="product.default_code"/></td></tr>
+                        <tr><td><strong>Product Type</strong></td><td><span t-field="product.detailed_type"/></td></tr>
+                        <tr><td><strong>Sales Price</strong></td><td><span t-field="product.list_price"/></td></tr>
+                        <tr><td><strong>Cost</strong></td><td><span t-field="product.standard_price"/></td></tr>
+                        <tr><td><strong>Category</strong></td><td><span t-field="product.categ_id"/></td></tr>
+                    </table>
+                    <div>
+                        <strong>Description</strong>
+                        <p t-field="product.description_sale"/>
+                    </div>
+                </div>
+            </t>
+        </t>
+    </template>
+</odoo>
