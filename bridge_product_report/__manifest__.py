@@ -1,6 +1,6 @@
 {
     "name": "Bridge Product PDF Report",
-    "version": "18.0.1.0.0",
+    "version": "16.0.1.0.0",
     "author": "PT Juke Solusi Teknologi",
     "license": "LGPL-3",
     "depends": ["product"],
@@ -8,5 +8,6 @@
         "report/product_report.xml",
         "report/product_report_template.xml"
     ],
-    "installable": True
+    "installable": True,
+    "application": False
 }
