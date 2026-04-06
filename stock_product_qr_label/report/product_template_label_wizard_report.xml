@@ -77,13 +77,19 @@
           />
                 </t>
             </t>
+            <script type="text/javascript">
+                window.addEventListener('load', function () {
+                    window.focus();
+                    window.print();
+                });
+            </script>
         </t>
     </template>
 
     <record id="action_product_template_label_wizard_report" model="ir.actions.report">
         <field name="name">Product Label</field>
         <field name="model">product.template.label.wizard</field>
-        <field name="report_type">qweb-pdf</field>
+        <field name="report_type">qweb-html</field>
         <field
       name="report_name"
     >stock_product_qr_label.report_product_template_label_wizard</field>

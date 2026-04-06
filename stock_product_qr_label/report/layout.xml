@@ -17,7 +17,7 @@
         </t>
         <div
       t-attf-class="article o_report_layout_standard o_company_#{company.id}_layout {{  'o_report_layout_background' if company.layout_background in ['Geometric', 'Custom']  else  '' }}"
-      t-attf-style="background-image: url({{ 'data:image/png;base64,%s' % company.layout_background_image.decode('utf-8') if company.layout_background_image and company.layout_background == 'Custom' else '/base/static/img/bg_background_template.jpg' if company.layout_background == 'Geometric' else ''}});"
+                        t-attf-style="background-image: url({{ 'data:image/png;base64,%s' % company.layout_background_image.decode('utf-8') if company.layout_background_image and company.layout_background == 'Custom' else '/base/static/img/bg_background_template.jpg' if company.layout_background == 'Geometric' else ''}}); margin: 0 !important; padding: 0 !important; width: 80mm !important; height: 40mm !important; min-width: 80mm !important; min-height: 40mm !important; max-width: 80mm !important; max-height: 40mm !important; overflow: hidden !important; display: block !important; box-sizing: border-box !important;"
       t-att-data-oe-model="o and o._name"
       t-att-data-oe-id="o and o.id"
       t-att-data-oe-lang="o and o.env.context.get('lang')"
