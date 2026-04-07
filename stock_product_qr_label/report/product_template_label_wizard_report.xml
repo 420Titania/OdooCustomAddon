@@ -3,6 +3,7 @@
     <template id="product_template_label_wizard_document">
         <t t-call="stock_product_qr_label.external_layout_quant_product_label">
             <div
+      data-png-canvas="1"
         class="page"
         style="font-size: 12px !important; font-family: ubuntu condensed; page-break-after: always; padding-top: 5px;  margin-right: -10px; margin-left: -10px; margin-bottom: -10px; margin-top: 10px;"
       >
@@ -57,7 +58,7 @@
                     </div>
                     <div class="col-4">
                         <img
-              style="margin-left: 5px;"
+              style="width: 20mm; height: 20mm;"
               t-att-src="'/report/barcode/?barcode_type=%s&amp;value=%s&amp;width=%s&amp;height=%s'%('QR', (doc.qr_code or '').replace(chr(38), '%26').replace('#', '%23'), 80, 80)"
             />
                     </div>
@@ -77,12 +78,7 @@
           />
                 </t>
             </t>
-            <script type="text/javascript">
-                window.addEventListener('load', function () {
-                    window.focus();
-                    window.print();
-                });
-            </script>
+        <t t-call="stock_product_qr_label.report_png_helper"/>
         </t>
     </template>
 

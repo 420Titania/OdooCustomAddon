@@ -6,33 +6,33 @@
     <!-- ===================================================== -->
     <template id="product_qr_label_document">
         <t t-call="stock_product_qr_label.external_layout_quant_product_label">
-            <div style="font-family: Helvetica, Arial, sans-serif; width: 80mm; height: 40mm; padding: 0.5mm; margin: 0; box-sizing: border-box; overflow: hidden; display: flex; flex-direction: column; page-break-after: always;">
+            <div data-png-canvas="1" style="font-family: Helvetica, Arial, sans-serif; width: 80mm; height: 40mm; padding: 0.5mm; margin: 0; box-sizing: border-box; overflow: hidden; display: flex; flex-direction: column; page-break-after: always;">
 
-            <div style="text-align: center; font-size: 12px; font-weight: 700; line-height: 1.1; margin-bottom: 0.5mm;">
+            <div style="text-align: center; font-size: 15px; font-weight: 700; line-height: 1.1; margin-bottom: 0.5mm;">
                 St. BERNADET - PAROKI PINANG
             </div>
 
             <div style="border-top: 1px solid #000; margin-bottom: 0.5mm;"></div>
 
             <div style="display: flex; width: 100%; margin-bottom: 0.5mm;">
-                <div style="width: 22mm;">
-                    <div style="width: 22mm; height: 22mm; overflow: hidden;">
+                <div style="width: 20mm;">
+                    <div style="width: 20mm; height: 20mm; overflow: hidden;">
                         <img src="/stock_product_qr_label/static/src/img/logo.png" style="width: 100%; height: 100%; display: block;" alt="Company logo" />
                     </div>
                 </div>
 
                 <div style="flex: 1; padding: 0 1mm;">
-                    <div style="font-size: 9px; font-weight: 700; line-height: 1.1; word-wrap: break-word;">
+                    <div style="font-size: 11px; font-weight: 700; line-height: 1.1; word-wrap: break-word;">
                         <span t-esc="doc.default_code or ''"/>
                     </div>
 
-                    <div style="font-size: 8.5px; line-height: 1.1; margin-top: 0.5mm; word-wrap: break-word; max-height: 10mm; overflow: hidden;">
+                    <div style="font-size: 10.5px; line-height: 1.1; margin-top: 0.5mm; word-wrap: break-word; max-height: 10mm; overflow: hidden;">
                         <span t-esc="doc.name_for_labels or doc.name or ''"/>
                     </div>
                 </div>
 
-                <div style="width: 22mm; display: flex; justify-content: flex-end;">
-                    <img style="width: 22mm; height: 22mm;"
+                <div style="width: 22mm; display: flex; justify-content: flex-start;">
+                    <img style="width: 20mm; height: 20mm;"
                          t-att-src="'/report/barcode/?barcode_type=%s&amp;value=%s&amp;width=%s&amp;height=%s'%('QR', (qr_code or '').replace(chr(38), '%26').replace('#', '%23'), 90, 90)"/>
                 </div>
             </div>
@@ -60,12 +60,7 @@
                    t-lang="company.partner_id.lang"/>
 
             </t>
-            <script type="text/javascript">
-                window.addEventListener('load', function () {
-                    window.focus();
-                    window.print();
-                });
-            </script>
+            <t t-call="stock_product_qr_label.report_png_helper"/>
         </t>
     </template>
 
@@ -83,12 +78,9 @@
                 <t t-call="stock_product_qr_label.product_qr_label_document"
                    t-lang="company.partner_id.lang"/>
 
-            </t>            <script type="text/javascript">
-                window.addEventListener('load', function () {
-                    window.focus();
-                    window.print();
-                });
-            </script>        </t>
+            </t>
+            <t t-call="stock_product_qr_label.report_png_helper"/>
+        </t>
     </template>
 
     <!-- ===================================================== -->
