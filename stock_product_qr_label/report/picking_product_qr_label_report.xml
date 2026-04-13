@@ -32,9 +32,9 @@
                             </div>
                         </div>
 
-                        <div style="width: 100%; height: 10mm; display: flex; align-items: center; justify-content: center;">
+                        <div style="width: 100%; height: 12mm; display: flex; align-items: center; justify-content: center;">
                             <img
-                                style="width: 80mm; height: 8mm;"
+                                style="width: 80mm; height: 12mm; margin-top: 2px;"
                                 t-att-src="'/report/barcode/?barcode_type=%s&amp;value=%s&amp;width=%s&amp;height=%s'%('barcode', (line.product_id.barcode or '').replace(chr(38), '%26').replace('#', '%23'), 320, 32)"
                             />
                         </div>
