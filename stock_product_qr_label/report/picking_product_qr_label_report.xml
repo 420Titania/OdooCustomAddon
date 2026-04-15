@@ -18,10 +18,10 @@
                             </div>
                             <div style="display: table-cell; width: 30mm; vertical-align: middle; padding-left: 0.8mm; padding-right: 0.8mm;">
                                 <div style="font-size: 12px; font-weight: 700; line-height: 1.2; word-wrap: break-word; overflow-wrap: break-word;">
-                                    <span t-esc="line.product_id.default_code or ''" />
+                                    <span t-esc="line.product_id.name_for_labels or line.product_id.name or ''" />
                                 </div>
                                 <div style="font-size: 11.5px; line-height: 1.2; margin-top: 0.8mm; word-wrap: break-word; overflow-wrap: break-word; max-height: 10mm; overflow: hidden;">
-                                    <span t-esc="line.product_id.name_for_labels or line.product_id.name or ''" />
+                                    <span t-esc="line.product_id.default_code or ''" />
                                 </div>
                             </div>
                             <div style="display: table-cell; width: 28mm; vertical-align: middle; text-align: left;">
@@ -35,7 +35,7 @@
                         <div style="width: 100%; height: 12mm; display: flex; align-items: center; justify-content: center;">
                             <img
                                 style="width: 80mm; height: 12mm; margin-top: 2px;"
-                                t-att-src="'/report/barcode/?barcode_type=%s&amp;value=%s&amp;width=%s&amp;height=%s'%('barcode', (line.product_id.barcode or '').replace(chr(38), '%26').replace('#', '%23'), 320, 32)"
+                                t-att-src="'/report/barcode/?barcode_type=%s&amp;value=%s&amp;width=%s&amp;height=%s'%('Code128', (line.product_id.barcode or '').replace(chr(38), '%26').replace('#', '%23'), 640, 96)"
                             />
                         </div>
                 </div>
