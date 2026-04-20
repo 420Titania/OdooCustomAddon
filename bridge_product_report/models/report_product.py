@@ -10,6 +10,7 @@ class ProductReport(models.AbstractModel):
     @api.model
     def _get_status_summary(self, docs):
         summary = {
+            'baik': 0,
             'broken': 0,
             'rusak': 0,
             'dihibahkan': 0,
@@ -18,13 +19,17 @@ class ProductReport(models.AbstractModel):
 
         for product in docs:
             status = (product.x_condition_status or '').strip().lower()
-            if status == 'broken':
+            if not status:
+                summary['tidak_ada'] += 1
+            elif status == 'good':
+                summary['baik'] += 1
+            elif status == 'broken':
                 summary['broken'] += 1
-            elif status == 'rusak':
+            elif status in ('sold', 'rusak'):
                 summary['rusak'] += 1
-            elif status == 'dihibahkan':
+            elif status in ('donated', 'dihibahkan'):
                 summary['dihibahkan'] += 1
-            elif status == 'tidak ada':
+            elif status in ('tidak ada', 'tidak_ada'):
                 summary['tidak_ada'] += 1
 
         return summary

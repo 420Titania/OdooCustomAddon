@@ -70,23 +70,28 @@
                 </table>
 
                 <div style="width: 34%; margin-left: auto; margin-top: 16px; font-size: 12px;">
+                    <t t-set="ss" t-value="status_summary or {}"/>
                     <div style="font-weight: 700; margin-bottom: 4px; text-align: right;">Rekap Status Aset</div>
                     <table style="width:100%; border-collapse: collapse;">
                         <tr>
+                            <td style="border:1px solid black; padding: 4px 6px;">Baik</td>
+                            <td style="border:1px solid black; padding: 4px 6px; text-align: center;" t-esc="ss.get('baik', 0)"/>
+                        </tr>
+                        <tr>
                             <td style="border:1px solid black; padding: 4px 6px;">Broken</td>
-                            <td style="border:1px solid black; padding: 4px 6px; text-align: center;" t-esc="status_summary['broken']"/>
+                            <td style="border:1px solid black; padding: 4px 6px; text-align: center;" t-esc="ss.get('broken', 0)"/>
                         </tr>
                         <tr>
                             <td style="border:1px solid black; padding: 4px 6px;">Rusak</td>
-                            <td style="border:1px solid black; padding: 4px 6px; text-align: center;" t-esc="status_summary['sold']"/>
+                            <td style="border:1px solid black; padding: 4px 6px; text-align: center;" t-esc="ss.get('rusak', 0)"/>
                         </tr>
                         <tr>
                             <td style="border:1px solid black; padding: 4px 6px;">Dihibahkan</td>
-                            <td style="border:1px solid black; padding: 4px 6px; text-align: center;" t-esc="status_summary['donate']"/>
+                            <td style="border:1px solid black; padding: 4px 6px; text-align: center;" t-esc="ss.get('dihibahkan', 0)"/>
                         </tr>
                         <tr>
                             <td style="border:1px solid black; padding: 4px 6px;">Tidak Ada</td>
-                            <td style="border:1px solid black; padding: 4px 6px; text-align: center;" t-esc="status_summary['tidak_ada']"/>
+                            <td style="border:1px solid black; padding: 4px 6px; text-align: center;" t-esc="ss.get('tidak_ada', 0)"/>
                         </tr>
                     </table>
                 </div>
